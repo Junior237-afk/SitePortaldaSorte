@@ -1,0 +1,2686 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dupla Chance</title>
+   <script src="chanceUnica.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+        }
+
+    
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: blue;
+        }
+        p {
+            color: #28a745;
+        }
+
+        #cartelas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+
+    .cartela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: green;
+    padding: 10px;
+    border: 2px solid #000;
+    width: 335px;
+    height: auto;
+    justify-content: center;
+}
+.grupo-cartela {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 5px;
+    margin-bottom: 20px; /* Espaçamento entre os dois blocos */
+}
+.espacamento {
+    height: 20px; /* Adiciona um espaçamento entre os grupos */
+}
+
+.quadrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #bbb;
+    font-size: 16px;
+    font-weight: bold;
+    height: 60px;
+    width: 60px;
+}
+
+.quadrado:hover {
+    background-color: #ccc;
+}
+        .botao-compra {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto 0;
+            width: 60%;
+            height: 40px;
+            background-color: blue;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            text-decoration: none;
+            text-align: center;
+            transform: translateX(8px);
+        }
+        .vendido {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto 0;
+            width: 60%;
+            height: 40px;
+            background-color: red;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            text-decoration: none;
+            text-align: center;
+            transform: translateX(8px);
+        }
+        h2 {
+            color: red;
+            text-align: center;
+        }
+        h3 {
+            color: red;
+            text-align: center;
+        }
+        .titulo_Orientacao {
+            color: #28a745;
+            text-align: center;
+        }
+        .Orientacao {
+            color: #28a745;
+            text-align: center;
+        }
+
+
+        @media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    #cartelas-container {
+        gap: 10px; /* Reduz o espaçamento entre as cartelas */
+    }
+
+    .cartela {
+        width: auto;
+        padding: 8px; /* Reduz o padding interno da cartela */
+        gap: 4px; /* Reduz o espaçamento entre os quadrados */
+    }
+
+    .grupo-cartela {
+        grid-template-columns: repeat(5, 50px); /* Ajusta para quadrados menores */
+        gap: 4px; /* Reduz o espaçamento dentro do grupo */
+    }
+
+    .quadrado {
+        height: 50px;
+        width: 50px;
+        font-size: 14px; /* Ajusta o tamanho da fonte */
+    }
+
+    .espacamento {
+        height: 10px; /* Reduz o espaçamento entre os blocos */
+    }
+
+    .botao-compra {
+        font-size: 14px;
+        padding: 6px;
+        margin-top: 10px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    #cartelas-container {
+        gap: 8px; /* Ainda menor espaçamento entre cartelas */
+    }
+
+    .cartela {
+        width: auto;
+        padding: 5px; /* Reduz ainda mais o padding */
+        gap: 3px; /* Espaçamento reduzido entre os quadrados */
+    }
+
+    .grupo-cartela {
+        grid-template-columns: repeat(5, 40px); /* Quadrados ainda menores */
+        gap: 2px; /* Espaçamento menor entre os quadrados */
+    }
+
+    .quadrado {
+        height: 40px;
+        width: 40px;
+        font-size: 12px; /* Ajusta o tamanho da fonte para ficar legível */
+    }
+
+    .espacamento {
+        height: 8px; /* Menor espaçamento entre os blocos */
+    }
+
+    .botao-compra {
+        font-size: 12px;
+        padding: 5px;
+        margin-top: 8px;
+        height: auto;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>CARTELAS - DUPLA CHANCE</h1>
+    <h2 class="titulo_Orientacao">
+    ORIENTAÇÃO
+    </h2>
+
+    <h3 class="Orientacao">
+        Cada quadrado abaixo <br>
+       representa a numeracao de uma cartela  <br>
+       Clique em COMPRAR para efetuar o processo de compra da sua cartela.
+    </h3>
+    <BR>
+     <h2>
+        INFORMATIVO!
+     </h2>
+     <H3>
+        Após você clicar em comprar, você será direcionado ao WhatsApp <br>
+        da revendedora, que irá com uma mensagem pré-definida. <br>
+        Apenas envie a mensagem para que a revendedora saiba a cartela que você escolheu.
+     </H3>
+
+
+    <div id="cartelas-container">
+        <!-- catela 01-->
+
+        <div class="cartela">
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <div class="espacamento"></div>
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+        </div>
+        
+        <!-- catela 02-->
+        <div class="cartela">
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <div class="espacamento"></div>
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+        </div>
+
+<!-- catela 03-->
+         <div class="cartela">
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <div class="espacamento"></div>
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+        </div>
+
+<!-- catela 04-->
+            <div class="cartela">
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <div class="espacamento"></div>
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+        </div>
+
+        <!-- catela 05-->
+        <div class="cartela">
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+            </div>
+            <div class="espacamento"></div>
+            <div class="grupo-cartela">
+                <div class="quadrado">B1</div>
+                <div class="quadrado">B2</div>
+                <div class="quadrado">B3</div>
+                <div class="quadrado">B4</div>
+                <div class="quadrado">B5</div>
+                <div class="quadrado">I16</div>
+                <div class="quadrado">I17</div>
+                <div class="quadrado">I18</div>
+                <div class="quadrado">I19</div>
+                <div class="quadrado">I20</div>
+                <div class="quadrado">N31</div>
+                <div class="quadrado">N32</div>
+                <div class="quadrado">N33</div>
+                <div class="quadrado">N34</div>
+                <div class="quadrado">N35</div>
+                <div class="quadrado">G46</div>
+                <div class="quadrado">G47</div>
+                <div class="quadrado">G48</div>
+                <div class="quadrado">G49</div>
+                <div class="quadrado">G50</div>
+    </div>
+    <a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 06-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 07-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 08-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 09-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 10-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 11-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 12-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 13-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 14-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 15-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 16-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 17-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 18-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 19-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 20-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 21-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 22-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 23-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 24-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 25-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 26-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 27-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 28-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 29-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 30-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 31-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 32-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 33-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 34-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 35-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 36-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 37-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 38-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 39-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 40-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 41-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 42-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 43-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 44-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 45-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 46-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 47-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 48-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 49-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
+<!-- catela 50-->
+<div class="cartela">
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+    </div>
+    <div class="espacamento"></div>
+    <div class="grupo-cartela">
+        <div class="quadrado">B1</div>
+        <div class="quadrado">B2</div>
+        <div class="quadrado">B3</div>
+        <div class="quadrado">B4</div>
+        <div class="quadrado">B5</div>
+        <div class="quadrado">I16</div>
+        <div class="quadrado">I17</div>
+        <div class="quadrado">I18</div>
+        <div class="quadrado">I19</div>
+        <div class="quadrado">I20</div>
+        <div class="quadrado">N31</div>
+        <div class="quadrado">N32</div>
+        <div class="quadrado">N33</div>
+        <div class="quadrado">N34</div>
+        <div class="quadrado">N35</div>
+        <div class="quadrado">G46</div>
+        <div class="quadrado">G47</div>
+        <div class="quadrado">G48</div>
+        <div class="quadrado">G49</div>
+        <div class="quadrado">G50</div>
+</div>
+<a href="#" class="botao-compra" data-numero="020906" onclick="comprar(event, this)">Comprar</a>
+</div>
